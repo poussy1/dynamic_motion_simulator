@@ -10,7 +10,12 @@ import Divider from '@material-ui/core/Divider';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import SimulatorChart from "./simulator_components/SimulatorChart"
+import PlayButton from "./simulator_components/PlayButton"
+import Legend from "./simulator_components/Legend"
+import Weight from "./simulator_components/weight"
+import {ReactComponent as DoubleMass} from './double_mass.svg';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -111,10 +116,7 @@ function App() {
                       Controls
                     </Typography>
                 </AppBar>
-               
                 <FormControlLabel style={{marginTop:"27px"}} control={<Checkbox name="checkedC"  color="primary"/>} label="Edit K1 & M1" />
-  
-                
               </Grid>      
 
             </Paper>
@@ -122,14 +124,23 @@ function App() {
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Grid container spacing={1}>
-                <Grid item xs={5} style={{height:"200px"}}> "Chart here..."
+                
+                <Grid item xs={5} style={{height:"auto"}}> 
+                  <SimulatorChart/>
                 </Grid>  
-                <Divider orientation="vertical" flexItem style={{height:"200px"}}/>
-                <Grid item xs={5} style={{height:"200px"}}> "block model here..."
+                
+                <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
+                
+                <Grid item xs={5} style={{height:"200px",paddingTop:"80px"}}> 
+                    {/* <Weight  /> */}
+                  <DoubleMass />
                 </Grid>
                 
-                <Grid item xs={1}> "Data..."
+                <Grid item xs={1}> 
+                  <PlayButton/>
+                  <Legend/>
                 </Grid>
+             
               </Grid>  
             </Paper>
           </Grid>
