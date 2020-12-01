@@ -14,7 +14,7 @@ import SimulatorChart from "./simulator_components/SimulatorChart"
 import PlayButton from "./simulator_components/PlayButton"
 import Legend from "./simulator_components/Legend"
 import Weight from "./simulator_components/weight"
-import {ReactComponent as DoubleMass} from './double_mass.svg';
+import {ReactComponent as DoubleMass} from './double_mass_colored.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
