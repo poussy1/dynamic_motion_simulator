@@ -131,9 +131,9 @@ function App() {
                 
                 <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
                 
-                <Grid item xs={5} style={{height:"200px",paddingTop:"80px"}}> 
+                <Grid item xs={5} style={{height:"200px",paddingTop:"20px"}}> 
                     {/* <Weight  /> */}
-                  <DoubleMass />
+                  <DoubleMass style={{height:"350px"}}/>
                 </Grid>
                 
                 <Grid item xs={1}> 
