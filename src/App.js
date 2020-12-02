@@ -14,7 +14,7 @@ import SimulatorChart from "./simulator_components/SimulatorChart"
 import PlayButton from "./simulator_components/PlayButton"
 import Legend from "./simulator_components/Legend"
 import Weight from "./simulator_components/weight"
-import {ReactComponent as DoubleMass} from './double_mass_colored.svg';
+import {ReactComponent as DoubleMass} from './double_mass_red.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +35,7 @@ function App() {
       <Card style={{margin:"20px",padding:"20px",border: '0.5px solid gray'}} >
         <Grid container spacing={3} style={{padding:"20px"}}>
           <Grid item xs={12} >
-            <AppBar style={{textAlign:"center"}} position="static"> 
+            <AppBar style={{textAlign:"center",background:"#f00101"}} position="static"> 
             {/* //style={{border: '0.5px solid gray'}} */}
               <Typography variant="h6" style={{padding:"10px"}}>
                 Dynamic Vibration Absorber
@@ -61,7 +61,7 @@ function App() {
                       id="standard-number"
                       label="F(N)"
                       type="number"
-                      style={{width:"50px"}}
+                      style={{width:"30px"}}
                     />
                     <Divider orientation="vertical" flexItem />
                     <TextField
@@ -73,30 +73,30 @@ function App() {
                     <Divider orientation="vertical" flexItem />
                     <TextField
                       id="standard-number"
-                      label="K2(N/m)"
+                      label="K_2(N/m)"
+                      type="number"
+                      style={{width:"70px"}}
+                    />
+                    <Divider orientation="vertical" flexItem />
+                    <TextField
+                      id="standard-number"
+                      label="M_2(Kg)"
+                      type="number"
+                      style={{width:"72px"}}
+                    />
+                    <Divider orientation="vertical" flexItem />
+                    <TextField
+                      id="standard-number"
+                      label="K_1(N/m)"
+                      type="number"
+                      style={{width:"68px"}}
+                    />
+                    <Divider orientation="vertical" flexItem />
+                    <TextField
+                      id="standard-number"
+                      label="M_1(Kg)"
                       type="number"
                       style={{width:"60px"}}
-                    />
-                    <Divider orientation="vertical" flexItem />
-                    <TextField
-                      id="standard-number"
-                      label="M2(Kg)"
-                      type="number"
-                      style={{width:"50px"}}
-                    />
-                    <Divider orientation="vertical" flexItem />
-                    <TextField
-                      id="standard-number"
-                      label="K1(N/m)"
-                      type="number"
-                      style={{width:"60px"}}
-                    />
-                    <Divider orientation="vertical" flexItem />
-                    <TextField
-                      id="standard-number"
-                      label="M1(Kg)"
-                      type="number"
-                      style={{width:"50px"}}
                     />
                 </Grid>
               </Grid> 
@@ -116,7 +116,7 @@ function App() {
                       Controls
                     </Typography>
                 </AppBar>
-                <FormControlLabel style={{marginTop:"27px"}} control={<Checkbox name="checkedC"  color="primary"/>} label="Edit K1 & M1" />
+                <FormControlLabel style={{marginTop:"27px"}} control={<Checkbox name="checkedC"  color="black"/>} label="Edit K_1 & M_1" />
               </Grid>      
 
             </Paper>
@@ -131,9 +131,9 @@ function App() {
                 
                 <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
                 
-                <Grid item xs={5} style={{height:"200px",paddingTop:"140px"}}> 
+                <Grid item xs={5} style={{height:"200px",paddingTop:"10px"}}> 
                     {/* <Weight  /> */}
-                  <DoubleMass style={{height:"350px"}}/>
+                  <DoubleMass style={{height:"280px"}}/>
                 </Grid>
                 
                 <Grid item xs={1}> 
