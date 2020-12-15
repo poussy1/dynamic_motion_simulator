@@ -14,6 +14,7 @@ import SimulatorChart from "./simulator_components/SimulatorChart"
 import PlayButton from "./simulator_components/PlayButton"
 import Legend from "./simulator_components/Legend"
 import Weight from "./simulator_components/weight"
+import Weight2 from "./simulator_components/weight2"
 import {ReactComponent as DoubleMass} from './double_mass_red.svg';
 
 const useStyles = makeStyles((theme) => ({
@@ -131,9 +132,10 @@ function App() {
                 
                 <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
                 
-                <Grid item xs={5} style={{height:"200px",paddingTop:"10px"}}> 
-                    {/* <Weight  /> */}
-                  <DoubleMass style={{height:"280px"}}/>
+                <Grid item xs={5} > 
+                    <Weight2  />
+                  {/* <DoubleMass style={{height:"280px"}}/> */}
+  
                 </Grid>
                 
                 <Grid item xs={1}> 
