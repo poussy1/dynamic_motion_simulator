@@ -1,0 +1,37 @@
+
+  .container{
+    transform-origin: 0px 60px;
+    /* height:500px; */
+    
+  
+  }
+  
+
+  .mass{
+    width:100px;
+    height:25px;
+    background-color: black;
+    transform-origin: 100%;
+    position:absolute;
+  }
+  .card1 {
+    transition: box-shadow 0.5s;
+    will-change: transform;
+  
+  }
+  .containerParent{
+    transform: translate(10px, 68px);
+  }
+  
+  .firstSpring{
+    position: absolute;
+    left: 35%;
+    top: 253px;
+  }
+  .firstMass{
+    margin-top:-31px;
+    z-index:1;
+  }
+  .secondMass{
+    margin-top:12px;
+  }
