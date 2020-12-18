@@ -13,6 +13,7 @@
     background-color: black;
     transform-origin: 100%;
     position:absolute;
+    z-index:100;
   }
   .card1 {
     transition: box-shadow 0.5s;
@@ -26,7 +27,7 @@
   .firstSpring{
     position: absolute;
     left: 35%;
-    top: 253px;
+    top: 193px;
   }
   .firstMass{
     margin-top:-31px;
@@ -34,4 +35,11 @@
   }
   .secondMass{
     margin-top:12px;
+  }
+  .mass1{
+    left:187px;
+    background-color:red;
+  }
+  .mass2{
+    left:187px;
   }

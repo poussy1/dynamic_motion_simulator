@@ -13,9 +13,9 @@ import Card from '@material-ui/core/Card';
 import SimulatorChart from "./simulator_components/SimulatorChart"
 import PlayButton from "./simulator_components/PlayButton"
 import Legend from "./simulator_components/Legend"
-import Weight from "./simulator_components/weight"
+
 import Weight3 from "./simulator_components/weight3"
-import {ReactComponent as DoubleMass} from './double_mass_red.svg';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -134,8 +134,6 @@ function App() {
                 
                 <Grid item xs={5} > 
                     <Weight3  />
-                  {/* <DoubleMass style={{height:"280px"}}/> */}
-  
                 </Grid>
                 
                 <Grid item xs={1}> 
