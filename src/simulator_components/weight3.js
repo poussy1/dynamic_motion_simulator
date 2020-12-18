@@ -204,8 +204,8 @@ function MainComp(props){
        {/* <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="230px" tFinal="210px"/>
        <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50px" maxHeight="70px"/>
       */}
-       <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="255px" tFinal="180px"/>
-       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="25px" maxHeight="100px"/>
+       <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="230px" tFinal="180px"/>
+       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50px" maxHeight="100px"/>
      
      
     </div>
