@@ -4,86 +4,86 @@ import { useSpring, animated } from 'react-spring'
 
 import './weight3.css'
 /////////////////////////solution 1///////////////////////////
-function SpringImage(props){
-    return  <svg> 
-    <g style={{transform:"translate(0px,35px)"}}> 
-       <g style={{transform:"scaleY(1.55)"}}>
+// function SpringImage(props){
+//     return  <svg> 
+//     <g style={{transform:"translate(0px,35px)"}}> 
+//        <g style={{transform:"scaleY(1.55)"}}>
      
-         <path 
-           d="M1.5 16.538l76.533 14.068M1.967 16.07L78.5 2M1.967 44.117L78.5 58.185M1.967 43.96L78.5 29.892m-77 "
-           stroke="#001858" 
+//          <path 
+//            d="M1.5 16.538l76.533 14.068M1.967 16.07L78.5 2M1.967 44.117L78.5 58.185M1.967 43.96L78.5 29.892m-77 "
+//            stroke="#001858" 
           
-         />
-       </g>
-   </g>
-   </svg>
-}
-function SpringImageAnimated(props){
-  const [myProps, set] = useSpring(() => ({
-    from: { transform: "scaleY(1)" },
-    to: async (next) => {
-      while (1) {
-        await next({transform: "scaleY(1)" });
-        await next({ transform: "scaleY(2) "});
-      }
-    }
-  }));
+//          />
+//        </g>
+//    </g>
+//    </svg>
+// }
+// function SpringImageAnimated(props){
+//   const [myProps, set] = useSpring(() => ({
+//     from: { transform: "scaleY(1)" },
+//     to: async (next) => {
+//       while (1) {
+//         await next({transform: "scaleY(1)" });
+//         await next({ transform: "scaleY(2) "});
+//       }
+//     }
+//   }));
 
 
 
-  return <div>
+//   return <div>
     
-    <animated.svg > 
-     <g style={{transform:" translate(0px, 80px)"}}> 
-        <animated.g  style={myProps}  className="container">
+//     <animated.svg > 
+//      <g style={{transform:" translate(0px, 80px)"}}> 
+//         <animated.g  style={myProps}  className="container">
       
-          <path 
-            d="M1.5 16.538l76.533 14.068M1.967 16.07L78.5 2M1.967 44.117L78.5 58.185M1.967 43.96L78.5 29.892m-77 "
-            stroke="#001858" 
+//           <path 
+//             d="M1.5 16.538l76.533 14.068M1.967 16.07L78.5 2M1.967 44.117L78.5 58.185M1.967 43.96L78.5 29.892m-77 "
+//             stroke="#001858" 
            
-          />
-        </animated.g>
-    </g>
-    </animated.svg>
-    </div>
-}
+//           />
+//         </animated.g>
+//     </g>
+//     </animated.svg>
+//     </div>
+// }
 
-function LEDS(props){
-   const [myProps, set] = useSpring(() => ({
-    from: { transform: "scaleY(1)" },
-    to: async (next) => {
-      while (1) {
-        await next({transform: "scaleY(1)" });
-        await next({ transform: "scaleY(1.75) "});
-      }
-    }
-  }));
+// function LEDS(props){
+//    const [myProps, set] = useSpring(() => ({
+//     from: { transform: "scaleY(1)" },
+//     to: async (next) => {
+//       while (1) {
+//         await next({transform: "scaleY(1)" });
+//         await next({ transform: "scaleY(1.75) "});
+//       }
+//     }
+//   }));
 
-  const [topSpring, setHeight] = useSpring(() => ({
-    from: { top: "114px" },
-    to: async (next) => {
-      while (1) {
-        await next({ top: "50px" });
-        await next({ top: "114px"});
-      }
-    }
-  }));
+//   const [topSpring, setHeight] = useSpring(() => ({
+//     from: { top: "114px" },
+//     to: async (next) => {
+//       while (1) {
+//         await next({ top: "50px" });
+//         await next({ top: "114px"});
+//       }
+//     }
+//   }));
   
-  return <div >
+//   return <div >
    
-    <div style={{position:"relative",marginTop:"-50px"}}>
-      <animated.div className="firstSpring" style={topSpring}>
-        <div className="mass secondMass"></div>
-        <div> <SpringImage /> </div>
-        <div className="mass firstMass"></div>
-      </animated.div>
-      <div style={{position: "absolute",left: "35%",top:" 169px"}}>
-        <SpringImageAnimated />
-      </div> 
+//     <div style={{position:"relative",marginTop:"-50px"}}>
+//       <animated.div className="firstSpring" style={topSpring}>
+//         <div className="mass secondMass"></div>
+//         <div> <SpringImage /> </div>
+//         <div className="mass firstMass"></div>
+//       </animated.div>
+//       <div style={{position: "absolute",left: "35%",top:" 169px"}}>
+//         <SpringImageAnimated />
+//       </div> 
     
-    </div>
-   </div>
-}
+//     </div>
+//    </div>
+// }
 ////////////////////////////solution 2//////////////////////////
 function SpringImageAnimatedByAdjustableHeight(props){
   const [myProps, set] = useSpring(() => ({
@@ -96,9 +96,9 @@ function SpringImageAnimatedByAdjustableHeight(props){
     }
   }));
 
-  return <div style={{position:"relative",top:"276px"}}>
- 
-    <animated.svg width="100px"  height={myProps.number}   style={{position:"absolute",bottom:"0",left:"200px"}} viewBox="0 0 150 100" preserveAspectRatio="none"> 
+  return <div className="springBase" >
+    
+    <animated.svg width="100px"  height={myProps.number}   style={{position:"absolute",bottom:"0"}} viewBox="0 0 150 100" preserveAspectRatio="none"> 
      <g > 
         <animated.g  className="container">
         <g>
@@ -122,6 +122,7 @@ function SpringImageAnimatedByAdjustableHeight(props){
         </animated.g>
     </g>
     </animated.svg>
+ 
   </div>
 }
 function SpringImageAnimatedByAdjustableHeightWithMass(props){
@@ -135,19 +136,19 @@ function SpringImageAnimatedByAdjustableHeightWithMass(props){
     }
   }));
   const [topSpring, setT] = useSpring(() => ({
-    from: { top: "-70px" },
+    from: { top: "-120px" },
     to: async (next) => {
       while (1) {
-        await next({ top: "-120px" });
-        await next({ top: "-70px"});
+        await next({ top: "-160px" });
+        await next({ top: "-120px"});
       }
     }
   }));
-  return <div style={{position:"relative",top:"288px",left:"183px"}}>
-
-    <animated.div  style={topSpring} className="mass mass1"></animated.div>
-  
-    <animated.svg width="100px" height={myProps.number} style={{position:"absolute",bottom:"0",left:"200px"}} viewBox="0 0 150 100" preserveAspectRatio="none"> 
+  return <div style={{position:"relative",top:"100px",left:"45%"}}>
+   
+    <animated.div  style={topSpring} className="mass mass1">M_2<span className="k">K_2</span></animated.div>
+   
+    <animated.svg width="100px" height={myProps.number} style={{position:"absolute",bottom:"0",left:"14px"}} viewBox="0 0 150 100" preserveAspectRatio="none"> 
      <g > 
         <animated.g  className="container">
         <g>
@@ -171,7 +172,7 @@ function SpringImageAnimatedByAdjustableHeightWithMass(props){
         </animated.g>
     </g>
     </animated.svg>
-    <div className="mass mass2"></div> 
+    <div className="mass mass2">M_1 <span className="k">K_1</span></div> 
   </div>
 }
 function SpringImageAnimatedAdjustableTop1(props){
@@ -185,13 +186,14 @@ function SpringImageAnimatedAdjustableTop1(props){
     }
   }));
   // style={topSpring}
-  return  <div  className="springOne" >
+  return  <div  className="movingSpringContainer" >
 
      <animated.div style={topSpring} className="firstSpring" >
-       
-       <SpringImageAnimatedByAdjustableHeightWithMass minHeight="50px" maxHeight="100px"/>
-     </animated.div>
+     
+       <SpringImageAnimatedByAdjustableHeightWithMass minHeight="100px" maxHeight="150px"/>
    
+     </animated.div>
+     
  </div>
 }
 function MainComp(props){
@@ -199,15 +201,11 @@ function MainComp(props){
   var displacement = 130
   var minHeight = springLengthAtRest+"px"
   var maxHeight = (springLengthAtRest+displacement)+"px"
-  return <div >
-
-       {/* <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="230px" tFinal="210px"/>
-       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50px" maxHeight="70px"/>
-      */}
-       <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="230px" tFinal="180px"/>
+  return <div className="springs">
+       <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal="100px"/>
        <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50px" maxHeight="100px"/>
-     
-     
+      
+       <div className="ground"></div>
     </div>
 }
 export default MainComp
