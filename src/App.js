@@ -30,26 +30,34 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles()
-    const[m1,setM1] = useState(200)
-    const[m2,setM2] = useState(10)
-    const[k1,setK1] = useState(2000)
-    const[k2,setK2] = useState(200)
-    const[w,setW]   = useState(0)
-    const[f,setF]   = useState(500)
+    const[m1,setM1] = useState(250)
+    const[m2,setM2] = useState(50)
+    const[k1,setK1] = useState(2500)
+    const[k2,setK2] = useState(500)
+    const[w,setW]   = useState(2)
+    const[f,setF]   = useState(750)
     const[x1,setX1] = useState(0)
     const[x2,setX2] = useState(0)
-    const[disableM1AndK1,setDisableM1AndK1] = useState(true)
+    const[disableM1AndK1,setDisableM1AndK1]     = useState(true)
+    const[baseSpringHeight,setBaseSpringHeight] = useState(150)
+    const[topSpringHeight,setTopSpringHeight]   = useState(0)
 
     function handlePlayClick(){
       var numerator = k2-m2*Math.pow(w,2) 
       var denominator = m1*m2*Math.pow(w,4)+k1*k2-Math.pow(w,2)*(m1*k2+m2*(k1+k2))
-      var x1 = numerator/denominator
+      var x1 = parseFloat(numerator)/parseFloat(denominator)
       setX1(x1) 
-
+      console.log(x1)
+      setBaseSpringHeight(50+(x1*10000000)*100)
+      
       var num = k2*f
       var denom = m1*m2*Math.pow(w,4) - Math.pow(w,2)*(m1*k2+m2*(k1+k2))+k1*k2
       var x2 = num/denom
       setX2(x2)
+      console.log("num:",num)
+      console.log("denom:",denom)
+      console.log("x2:",x2)
+      setTopSpringHeight(50+(x2*100)*100)
     }
       
     return (
@@ -59,7 +67,7 @@ function App() {
             <AppBar style={{textAlign:"center",background:"#f00101"}} position="static"> 
             {/* //style={{border: '0.5px solid gray'}} */}
               <Typography variant="h6" style={{padding:"10px"}}>
-                Dynamic Vibration Absorber 
+                Dynamic Vibration Absorber -x1:{x1} -x2:{x2}
               </Typography>
             </AppBar>
           </Grid>
@@ -83,7 +91,7 @@ function App() {
                       label="F"
                       type="number"
                       value={f}
-                      style={{width:"80px"}}
+                      style={{width:"100px"}}
                       onChange={(e)=> setF(e.target.value)} 
                       InputProps={{
                         endAdornment: <InputAdornment position="end">N</InputAdornment>,
@@ -100,7 +108,7 @@ function App() {
                       label="W"
                       type="number"
                       value={w}
-                      style={{width:"80px"}}
+                      style={{width:"100px"}}
                       onChange={(e)=> setW(e.target.value)} 
                       InputProps={{
                         endAdornment: <InputAdornment position="end">rad/s</InputAdornment>,
@@ -117,7 +125,7 @@ function App() {
                       label="K_2"
                       value={k2}
                       type="number"
-                      style={{width:"80px"}}
+                      style={{width:"100px"}}
                       onChange={(e)=> setK2(e.target.value)} 
                       InputProps={{
                         endAdornment: <InputAdornment position="end">N/m</InputAdornment>,
@@ -134,7 +142,7 @@ function App() {
                       label="M_2"
                       value={m2}
                       type="number"
-                      style={{width:"80px"}}
+                      style={{width:"100px"}}
                       onChange={(e)=> setM2(e.target.value)} 
                       InputProps={{
                         endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
@@ -153,7 +161,7 @@ function App() {
                       value={k1}
                       disabled={disableM1AndK1}
                       type="number"
-                      style={{width:"80px"}}
+                      style={{width:"100px"}}
                       onChange={(e)=> setK1(e.target.value)} 
                       InputProps={{
                         endAdornment: <InputAdornment position="end">N/m</InputAdornment>,
@@ -171,7 +179,7 @@ function App() {
                       label="M_1"
                       value={m1}
                       type="number"
-                      style={{width:"80px"}}
+                      style={{width:"100px"}}
                       disabled={disableM1AndK1}
                       onChange={(e)=> setM1(e.target.value)} 
                       InputProps={{
@@ -222,11 +230,11 @@ function App() {
                 <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
                 
                 <Grid item xs={5} > 
-                    <Weight3  />
+                    <Weight3 baseSpringHeight={baseSpringHeight} topSpringHeight={topSpringHeight} />
                 </Grid>
                 
                 <Grid item xs={1}> 
-                  <PlayButton handlePlayClick={handlePlayClick}/>
+                  <PlayButton handlePlayClick={handlePlayClick} />
                   <Legend/>
                 </Grid>
              
