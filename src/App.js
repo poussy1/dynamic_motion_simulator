@@ -34,10 +34,10 @@ function App() {
     const[m2,setM2] = useState(50)
     const[k1,setK1] = useState(2500)
     const[k2,setK2] = useState(500)
-    const[w,setW]   = useState(2)
+    const[w,setW]   = useState(3.23)
     const[f,setF]   = useState(750)
-    const[x1,setX1] = useState(0)
-    const[x2,setX2] = useState(0)
+    const[x1,setX1] = useState(2)
+    const[x2,setX2] = useState(1)
     const[disableM1AndK1,setDisableM1AndK1]     = useState(true)
     const[baseSpringHeight,setBaseSpringHeight] = useState(150)
     const[topSpringHeight,setTopSpringHeight]   = useState(0)
@@ -46,20 +46,21 @@ function App() {
       var numerator = k2-m2*Math.pow(w,2) 
       var denominator = m1*m2*Math.pow(w,4)+k1*k2-Math.pow(w,2)*(m1*k2+m2*(k1+k2))
       var x1 = parseFloat(numerator)/parseFloat(denominator)
-      setX1(x1) 
-      console.log(x1)
-      setBaseSpringHeight(50+(x1*10000000)*100)
+      setX1(x1)
+      
       
       var num = k2*f
       var denom = m1*m2*Math.pow(w,4) - Math.pow(w,2)*(m1*k2+m2*(k1+k2))+k1*k2
       var x2 = num/denom
+     
       setX2(x2)
-      console.log("num:",num)
-      console.log("denom:",denom)
-      console.log("x2:",x2)
-      setTopSpringHeight(50+(x2*100)*100)
     }
-      
+    React.useEffect(()=>{
+      console.log("x1:",x1)
+      setBaseSpringHeight(50+(Math.abs(x1))*50)
+      console.log("x2:",x2)
+      setTopSpringHeight(50+(Math.abs(x2))*50)
+    },[x1,x2])
     return (
       <Card style={{margin:"20px",padding:"20px",border: '0.5px solid gray'}} >
         <Grid container spacing={3} style={{padding:"20px"}}>
@@ -228,9 +229,9 @@ function App() {
                 </Grid>  
                 
                 <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
-                
                 <Grid item xs={5} > 
                     <Weight3 baseSpringHeight={baseSpringHeight} topSpringHeight={topSpringHeight} />
+              
                 </Grid>
                 
                 <Grid item xs={1}> 

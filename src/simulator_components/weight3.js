@@ -4,17 +4,32 @@ import { useSpring, animated } from 'react-spring'
 
 import './weight3.css'
 
-function SpringImageAnimatedByAdjustableHeight(props){
+function SpringImageAnimatedByAdjustableHeight({minHeight,maxHeight}){ console.log("spring adjustable height comp props:",minHeight,maxHeight)
+  // const [minHeightS,setMinHeightS] = React.useState(minHeight)
+  // const [maxHeightS,setMaxHeightS] = React.useState(maxHeight)
+  // React.useEffect(()=>{
+  //   setMinHeightS(minHeight)
+  //   setMaxHeightS(maxHeight)
+  // },[minHeight,maxHeight])
   const [myProps, set] = useSpring(() => ({
-    from: { number: props.minHeight },
+   
+    from: { number:minHeight },
     to: async (next) => {
       while (1) {
-        await next({number: props.maxHeight });
-        await next({ number: props.minHeight});
+        await next({number: maxHeight});
+        await next({ number:minHeight});
       }
     }
   }));
-
+  set(()=>({
+    from: { number:minHeight },
+    to: async (next) => {
+      while (1) {
+        await next({number: maxHeight});
+        await next({ number:minHeight});
+      }
+    }
+  }))
   return <div className="springBase" >
     
     <animated.svg width="100px"  height={myProps.number}   style={{position:"absolute",bottom:"0"}} viewBox="0 0 150 100" preserveAspectRatio="none"> 
@@ -97,8 +112,14 @@ function SpringImageAnimatedByAdjustableHeightWithMass(props){
   </div>
 }
 function SpringImageAnimatedAdjustableTop1(props){
-  const [topSpring, setHeight] = useSpring(() => ({
-    from: { top: props.tInitial },
+  // const[tInitial,setTInitial] = React.useState(props.tInitial)
+  // const[tFinal,setTFinal]     = React.useState(props.tFinal)
+  // React.useEffect(()=>{
+  //   setTInitial(props.tInitial)
+  //   setTFinal(props.tFinal)
+  // },[props.tInitial,props.tFinal])
+  const [topSpring, setTopSpring] = useSpring(() => ({
+    from: { top:props.tInitial },
     to: async (next) => {
       while (1) {
         await next({ top:props.tInitial });
@@ -106,6 +127,8 @@ function SpringImageAnimatedAdjustableTop1(props){
       }
     }
   }));
+
+
   // style={topSpring}
   return  <div  className="movingSpringContainer" >
 
@@ -118,16 +141,17 @@ function SpringImageAnimatedAdjustableTop1(props){
  </div>
 }
 function MainComp(props){
-  var tFinal = 200-props.baseSpringHeight
-  console.log("tFinal:",tFinal)
-  console.log("baseSpringHeight:",props.baseSpringHeight)
+  console.log("main comp props:",props)
+
   return <div className="springs">
       
-       {/* <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal="50px"/>
-       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50px" maxHeight="150px"/> */}
+  
+       <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal={`${200-props.baseSpringHeight}px`}/>
+       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50" maxHeight={`${props.baseSpringHeight.toString()}`}/>
       
-       <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal={`${tFinal}px`}/>
-       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50px" maxHeight={`${props.baseSpringHeight}px`}/>
+       {/* <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal={`50px`}/>
+       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50" maxHeight={`150`}/> */}
+     
       
        <div className="ground"></div>
   
