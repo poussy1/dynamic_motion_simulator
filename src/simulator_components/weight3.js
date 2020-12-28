@@ -6,12 +6,7 @@ import { animated } from "@react-spring/web"
 import './weight3.css'
 
 function SpringImageAnimatedByAdjustableHeight({minHeight,maxHeight}){ console.log("spring adjustable height comp props:",minHeight,maxHeight)
-  // const [minHeightS,setMinHeightS] = React.useState(minHeight)
-  // const [maxHeightS,setMaxHeightS] = React.useState(maxHeight)
-  // React.useEffect(()=>{
-  //   setMinHeightS(minHeight)
-  //   setMaxHeightS(maxHeight)
-  // },[minHeight,maxHeight])
+
   const [myProps, set] = useSpring(() => ({
    
     from: { number:minHeight },
@@ -95,12 +90,6 @@ function SpringImageAnimatedByAdjustableHeightWithMass(props){
   </div>
 }
 function SpringImageAnimatedAdjustableTop1(props){
-  // const[tInitial,setTInitial] = React.useState(props.tInitial)
-  // const[tFinal,setTFinal]     = React.useState(props.tFinal)
-  // React.useEffect(()=>{
-  //   setTInitial(props.tInitial)
-  //   setTFinal(props.tFinal)
-  // },[props.tInitial,props.tFinal])
   const [topSpring, setTopSpring] = useSpring(() => ({
     from: { top:props.tInitial },
     to:  { top:props.tFinal},
@@ -108,8 +97,6 @@ function SpringImageAnimatedAdjustableTop1(props){
     }
   ));
 
-
-  // style={topSpring}
   return  <div  className="movingSpringContainer" >
 
      <animated.div style={topSpring} className="firstSpring" >
@@ -128,11 +115,7 @@ function MainComp(props){
   
        <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal={`${200-props.baseSpringHeight}px`}/>
        <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50" maxHeight={`${props.baseSpringHeight.toString()}`}/>
-      
-       {/* <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal={`50px`}/>
-       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50" maxHeight={`150`}/> */}
-     
-      
+
        <div className="ground"></div>
   
     </div>
