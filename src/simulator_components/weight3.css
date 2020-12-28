@@ -1,0 +1,114 @@
+
+  .container{
+    transform-origin: 0px 60px;
+    /* height:500px; */
+    
+  
+  }
+  
+
+  .mass{
+    width:100px;
+    height:30px;
+    color: white;
+    background-color: black;
+    transform-origin: 100%;
+    position:absolute;
+    z-index:100;
+    font-weight: bold;
+  }
+  .card1 {
+    transition: box-shadow 0.5s;
+    will-change: transform;
+  
+  }
+  .containerParent{
+    transform: translate(10px, 68px);
+  }
+  
+  .firstSpring{
+    position: absolute;
+    left:45%;
+    top: 193px;
+  }
+  .firstMass{
+    margin-top:-31px;
+    z-index:1;
+  }
+  .secondMass{
+    margin-top:12px;
+  }
+  .mass1{
+  
+    background-color:red;
+  }
+  .mass2{
+    background-color:red;
+  }
+  .movingSpringContainer{
+
+    width:300px;
+    height:200px;
+    margin-top:-11px;
+    position:relative;
+    transform: scale(0.75);
+    display:flex;
+    justify-content: center;
+    z-index:100;
+  }
+  .springBase{
+    position:relative;
+
+    width:300px;
+    height:80px;
+    margin-bottom:-10px;
+    transform: scale(0.75);
+  }
+  .ground{
+    width:300px;
+    transform: scale(0.75);
+    position:relative;
+    height:5px;
+    background-color:black;
+    position: relative;
+    left:30px;
+  }
+  .springs{
+    position: relative;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;;
+    width:300px;
+    height:262px;
+  
+  }
+  .k{
+    position:relative;
+    right:102px;
+    top:40px;
+    color:black;
+    font-weight: bold;
+    margin-left:-20px;
+  }
+  @media only screen and (max-width: 600px) {
+    .movingSpringContainer{
+      /* width: 300px;
+      height: 400px;
+      position: relative;
+      top: 157px;
+   
+      transform: scale(0.5);
+      z-index: 100; */
+    }
+    .springBase{
+      /* transform: scale(0.5);
+      z-index: 100; */
+    }
+    .springs{
+      top: 106px;
+    left: -26px;
+    height: 400px;
+    margin: 20px;
+    }
+
+  }
