@@ -44,10 +44,11 @@ function App() {
 
     function handlePlayClick(){
       var numerator = k2-m2*Math.pow(w,2) 
-      var denominator = m1*m2*Math.pow(w,4)+k1*k2-Math.pow(w,2)*(m1*k2+m2*(k1+k2))
+      var denominator = (m1*m2*Math.pow(w,4))+(k1*k2)-(Math.pow(w,2)*(m1*k2+m2*(k1+k2)))
       var x1 = parseFloat(numerator)/parseFloat(denominator)
       setX1(x1)
-      
+      console.log("x1 numerator:",numerator)
+      console.log("x1 denominator:",denominator)
       
       var num = k2*f
       var denom = m1*m2*Math.pow(w,4) - Math.pow(w,2)*(m1*k2+m2*(k1+k2))+k1*k2
@@ -56,9 +57,9 @@ function App() {
       setX2(x2)
     }
     React.useEffect(()=>{
-      console.log("x1:",x1)
-      setBaseSpringHeight(50+(Math.abs(x1))*50)
-      console.log("x2:",x2)
+      console.log("base spring height:",50+(Math.abs(x1))*50)
+      setBaseSpringHeight(50+(Math.abs(x1))*50*10)
+      // console.log("x2:",x2)
       setTopSpringHeight(50+(Math.abs(x2))*50)
     },[x1,x2])
     return (

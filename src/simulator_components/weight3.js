@@ -5,15 +5,21 @@ import { useSpring } from "@react-spring/core"
 import { animated } from "@react-spring/web"
 import './weight3.css'
 
-function SpringImageAnimatedByAdjustableHeight({minHeight,maxHeight}){ console.log("spring adjustable height comp props:",minHeight,maxHeight)
+function SpringImageAnimatedByAdjustableHeight(props){ 
 
   const [myProps, set] = useSpring(() => ({
    
-    from: { number:minHeight },
-    to: { number: maxHeight },
+    from: { number:props.minHeight },
+    to: { number: props.maxHeight },
     loop : {reverse:true}
   }));
-
+  React.useEffect(()=>{
+    set({
+      from: { number:props.minHeight },
+      to: { number: props.maxHeight },
+      loop : {reverse:true}
+    })
+  },[set,props])
   return <div className="springBase" >
     
     <animated.svg width="100px"  height={myProps.number}   style={{position:"absolute",bottom:"0"}} viewBox="0 0 150 100" preserveAspectRatio="none"> 
@@ -58,6 +64,7 @@ function SpringImageAnimatedByAdjustableHeightWithMass(props){
     loop:{reverse:true}   
     }
   ));
+  
   return <div style={{position:"relative",top:"100px",left:"45%"}}>
    
     <animated.div  style={topSpring} className="mass mass1">M_2<span className="k">K_2</span></animated.div>
@@ -89,13 +96,20 @@ function SpringImageAnimatedByAdjustableHeightWithMass(props){
     <div className="mass mass2">M_1 <span className="k">K_1</span></div> 
   </div>
 }
-function SpringImageAnimatedAdjustableTop1(props){
+function SpringImageAnimatedAdjustableTop1(props){ 
   const [topSpring, setTopSpring] = useSpring(() => ({
     from: { top:props.tInitial },
     to:  { top:props.tFinal},
     loop:{reverse:true}  
     }
   ));
+  React.useEffect(()=>{
+    setTopSpring({
+      from: { top:props.tInitial },
+      to:  { top:props.tFinal},
+      loop:{reverse:true}  
+      })
+  },[setTopSpring,props])
 
   return  <div  className="movingSpringContainer" >
 
@@ -108,13 +122,16 @@ function SpringImageAnimatedAdjustableTop1(props){
  </div>
 }
 function MainComp(props){
-  console.log("main comp props:",props)
-
+  console.log(props)
+  const [maxHeight,setmaxHeight] = React.useState(props.baseSpringHeight)
+  const [tFInal,setTfinal] = React.useState(200-props.baseSpringHeight)
   return <div className="springs">
       
   
-       <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal={`${200-props.baseSpringHeight}px`}/>
-       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50" maxHeight={`${props.baseSpringHeight.toString()}`}/>
+       {/* <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal={`${200-props.baseSpringHeight}px`}/>
+       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50" maxHeight={`${props.baseSpringHeight.toString()}`}/> */}
+       <SpringImageAnimatedAdjustableTop1 class='doubleDispSpeing'tInitial="150px" tFinal={`${tFInal}px`}/>
+       <SpringImageAnimatedByAdjustableHeight class="singleDispSpring" minHeight="50" maxHeight={`${maxHeight}px`}/>
 
        <div className="ground"></div>
   
