@@ -36,11 +36,11 @@ function App() {
     const[k2,setK2] = useState(500)
     const[w,setW]   = useState(3.23)
     const[f,setF]   = useState(750)
-    const[x1,setX1] = useState(2)
+    const[x1,setX1] = useState(0)
     const[x2,setX2] = useState(1)
     const[disableM1AndK1,setDisableM1AndK1]     = useState(true)
-    const[baseSpringHeight,setBaseSpringHeight] = useState(150)
-    const[topSpringHeight,setTopSpringHeight]   = useState(0)
+    const[baseSpringHeight,setBaseSpringHeight] = useState(0)
+    const[topSpringHeight,setTopSpringHeight]   = useState(150)
 
     function handlePlayClick(){
       var numerator = k2-m2*Math.pow(w,2) 
@@ -58,11 +58,12 @@ function App() {
     }
     React.useEffect(()=>{
       
-      var h = Math.ceil(50+(Math.abs(x1))*50)
-      console.log("h:",h)
+      var h = Math.ceil(50+(Math.abs(x1))*100000)
+      console.log(h)
       setBaseSpringHeight(h)
-
-      setTopSpringHeight(50+(Math.abs(x2))*50)
+      var topH = Math.ceil(50+(Math.abs(x2))*50)
+      console.log(topH)
+      setTopSpringHeight(topH)
     },[x1,x2])
     return (
       <Card style={{margin:"20px",padding:"20px",border: '0.5px solid gray'}} >
