@@ -47,8 +47,6 @@ function App() {
       var denominator = (m1*m2*Math.pow(w,4))+(k1*k2)-(Math.pow(w,2)*(m1*k2+m2*(k1+k2)))
       var x1 = parseFloat(numerator)/parseFloat(denominator)
       setX1(x1)
-      // console.log("x1 numerator:",numerator)
-      // console.log("x1 denominator:",denominator)
       
       var num = k2*f
       var denom = m1*m2*Math.pow(w,4) - Math.pow(w,2)*(m1*k2+m2*(k1+k2))+k1*k2
