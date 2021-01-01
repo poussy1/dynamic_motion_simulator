@@ -8,7 +8,6 @@ import './weight3.css'
 function SpringImageAnimatedByAdjustableHeight(props){ 
 
   const [myProps, set] = useSpring(() => ({
-   
     from: { number:props.minHeight },
     to: { number: props.maxHeight },
     loop : {reverse:true}
@@ -115,6 +114,7 @@ function SpringImageAnimatedAdjustableTop1(props){
   const [topSpringHeight,seTopSpringHeight] = React.useState(props.topSpringHeight)
 
   const [topSpring, setTopSpring] = useSpring(() => ({
+    
     from: { top:props.tInitial },
     to:  { top:props.tFinal},
     loop:{reverse:true}  
