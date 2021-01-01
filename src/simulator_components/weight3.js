@@ -125,6 +125,12 @@ function MainComp(props){
   console.log(props)
   const [maxHeight,setmaxHeight] = React.useState(props.baseSpringHeight)
   const [tFInal,setTfinal] = React.useState(200-props.baseSpringHeight)
+  React.useEffect(()=>{
+    var h = props.baseSpringHeight
+    var f = 200-h
+    setmaxHeight(h)
+    setTfinal(f)
+  },[setmaxHeight,setTfinal,props])
   return <div className="springs">
       
   
