@@ -72,7 +72,7 @@ function App() {
             <AppBar style={{textAlign:"center",background:"#f00101"}} position="static"> 
             {/* //style={{border: '0.5px solid gray'}} */}
               <Typography variant="h6" style={{padding:"10px"}}>
-                Dynamic Vibration Absorber -x1:{x1} -x2:{x2}
+                Dynamic Vibration Absorber
               </Typography>
             </AppBar>
           </Grid>
