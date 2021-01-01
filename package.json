@@ -56,8 +56,5 @@
   },
   "devDependencies": {
     "file-loader": "^6.2.0"
-  },
-  "resolutions": {
-    "webpack": "~4.43.0"
   }
 }
