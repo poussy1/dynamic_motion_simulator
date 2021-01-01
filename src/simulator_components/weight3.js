@@ -11,7 +11,7 @@ function SpringImageAnimatedByAdjustableHeight(props){
     from: { number:props.minHeight },
     to: { number: props.maxHeight },
     loop : {reverse:true}
-  }));
+  })); //
   React.useEffect(()=>{
     set({
       from: { number:props.minHeight },
