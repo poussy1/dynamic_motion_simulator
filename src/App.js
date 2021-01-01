@@ -58,11 +58,13 @@ function App() {
     }
     React.useEffect(()=>{
       
-      var h = Math.ceil(50+(Math.abs(x1))*100000)
+      var h = Math.ceil(50+(Math.abs(x1))*50000)
+      if(h>150){h=150}
       console.log(h)
       setBaseSpringHeight(h)
       var topH = Math.ceil(50+(Math.abs(x2))*50)
       console.log(topH)
+      if(topH>150){topH=150}
       setTopSpringHeight(topH)
     },[x1,x2])
     return (
@@ -131,7 +133,7 @@ function App() {
                       value={k2}
                       type="number"
                       style={{width:"100px"}}
-                      onChange={(e)=> setK2(e.target.value)} 
+                      onChange={(e)=> setK2(parseInt(e.target.value))} 
                       InputProps={{
                         endAdornment: <InputAdornment position="end">N/m</InputAdornment>,
                         inputProps: { min: 200, 
