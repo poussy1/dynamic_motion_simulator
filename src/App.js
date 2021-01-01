@@ -114,7 +114,7 @@ function App() {
                       type="number"
                       value={w}
                       style={{width:"100px"}}
-                      onChange={(e)=> setW(e.target.value)} 
+                      onChange={(e)=> setW(parseFloat(e.target.value))} 
                       InputProps={{
                         endAdornment: <InputAdornment position="end">rad/s</InputAdornment>,
                         inputProps: { max: 16, 
@@ -167,7 +167,7 @@ function App() {
                       disabled={disableM1AndK1}
                       type="number"
                       style={{width:"100px"}}
-                      onChange={(e)=> setK1(e.target.value)} 
+                      onChange={(e)=> setK1(parseInt(e.target.value))} 
                       InputProps={{
                         endAdornment: <InputAdornment position="end">N/m</InputAdornment>,
                         inputProps: { 
