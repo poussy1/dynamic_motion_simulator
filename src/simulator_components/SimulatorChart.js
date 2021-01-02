@@ -16,14 +16,14 @@ export default function SimulatorChart(props) {
       <HorizontalGridLines  />
       <VerticalGridLines  />
       <XAxis
-        title="X Axis"
+        title="w/w2"
         style={{
           // line: {stroke: '#ADDDE1'},
           // ticks: {stroke: '#ADDDE1'},
           text: {stroke: 'none', fontWeight: 600}
         }}
       />
-      <YAxis title="Y Axis" />
+      <YAxis title="X1/Xst" />
       <LineSeries
         // className="first-series"
         color="grey"
