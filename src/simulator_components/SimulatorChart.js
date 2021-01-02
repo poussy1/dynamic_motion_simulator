@@ -27,8 +27,18 @@ export default function SimulatorChart(props) {
       <LineSeries
         // className="first-series"
         color="grey"
-        // [{x: 1, y: 13}, {x: 2, y: 5}, {x: 3, y: 15}, {x: 4, y: 12}]
+       
         data={props.data}
+        style={{
+          strokeLinejoin: 'round',
+          strokeWidth: 4
+        }}
+      />
+      <LineSeries
+        // className="first-series"
+        color="red"
+        // [{x: 1, y: 13}, {x: 2, y: 5}, {x: 3, y: 15}, {x: 4, y: 12}]
+        data={[{x:props.line,y:10},{x:props.line,y:20},{x:props.line,y:30},{x:props.line,y:40},{x:props.line,y:50}]}
         style={{
           strokeLinejoin: 'round',
           strokeWidth: 4
