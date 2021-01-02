@@ -13,7 +13,7 @@ function legend({x1,x2,k1,k2,m1,m2,w,f}){
         <div>X_1={Math.abs((x1).toFixed(4))||"..."}</div>
         <div>X_2/Xst={Math.abs((x2*k1/f).toFixed(4))||"..."}</div> 
         <div>X_2={Math.abs((x2).toFixed(4))||"..."}</div>
-        <div>Xst={f/k1||"..."}</div>
+        <div>Xst={(f/k1).toFixed(4)||"..."}</div>
         <div>K_1={k1||"..."}</div>
         <div>M_1={m1||"..."}</div>
         <div>w/w_2={parseFloat(w/Math.sqrt(k2/m2)).toFixed(1)||"..."}</div>
