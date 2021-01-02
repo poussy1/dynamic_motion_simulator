@@ -36,7 +36,7 @@ function App() {
     const[k2,setK2] = useState(500)
     const[w,setW]   = useState(3.23)
     const[f,setF]   = useState(750)
-    const[x1,setX1] = useState(0)
+    const[x1,setX1] = useState(0.0000837)
     const[x2,setX2] = useState(1)
     const[disableM1AndK1,setDisableM1AndK1]     = useState(true)
     const[baseSpringHeight,setBaseSpringHeight] = useState(0)
@@ -229,18 +229,18 @@ function App() {
               <Grid container spacing={1}>
                 
                 <Grid item xs={5} style={{height:"auto"}}> 
-                  <SimulatorChart/>
+                  <SimulatorChart data={[{x:1,y:10},{x:2,y:20},{x:3,y:30},{x:4,y:40}]}/>
                 </Grid>  
                 
                 <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
-                <Grid item xs={5} > 
+                <Grid item xs={4} > 
                     <Weight3 baseSpringHeight={baseSpringHeight} topSpringHeight={topSpringHeight} />
               
                 </Grid>
                 
-                <Grid item xs={1}> 
+                <Grid item xs={2}> 
                   <PlayButton handlePlayClick={handlePlayClick} />
-                  <Legend/>
+                  <Legend x1={x1} x2={x2} m1={m1} m2={m2} k1={k1} k2={k2} w={w} f={f}/>
                 </Grid>
              
               </Grid>  
