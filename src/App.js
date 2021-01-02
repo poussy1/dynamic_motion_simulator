@@ -229,7 +229,7 @@ function App() {
               <Grid container spacing={1}>
                 
                 <Grid item xs={5} style={{height:"auto"}}> 
-                  <SimulatorChart data={[{x:1,y:10},{x:2,y:20},{x:3,y:30},{x:4,y:40}]} line={w/parseFloat(Math.sqrt(k1/m1)).toPrecision(3)}/>
+                  <SimulatorChart data={[{x:1,y:10/100},{x:2,y:20/100},{x:3,y:30/100},{x:4,y:40/100}]} line={w/parseFloat(Math.sqrt(k1/m1)).toPrecision(3)}/>
                 </Grid>  
                 
                 <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
