@@ -71,8 +71,8 @@ function calculateChartData(f,k1,k2,m1,m2,w){
   var Xst = f/k1
   for(let y of ys){
     var x1OverXst = calculateX1OverXstAsFnInWOverW2(k1,k2,m1,m2,y) 
-    var wOverw1 = y/Math.sqrt(k2/m2)
-    var point = {x:wOverw1 ,y:x1OverXst}
+    var wOverw2 = y/Math.sqrt(k2/m2)
+    var point = {x:wOverw2 ,y:x1OverXst}
     points.push(point)
   }
   console.log(points)
