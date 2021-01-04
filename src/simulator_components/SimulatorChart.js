@@ -34,7 +34,7 @@ export default function SimulatorChart(props) {
           strokeWidth: 4
         }}
       />
-      {/* <LineSeries
+      <LineSeries
         // className="first-series"
         color="red"
         data={[{x:props.line,y:10/1500},{x:props.line,y:20/1500},{x:props.line,y:30/1500},{x:props.line,y:40/1500}]}
@@ -42,7 +42,7 @@ export default function SimulatorChart(props) {
           strokeLinejoin: 'round',
           strokeWidth: 4
         }}
-      /> */}
+      />
 
     </XYPlot>
   );
