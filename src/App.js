@@ -27,7 +27,57 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
+function calculateX1(k1,k2,m1,m2,w,f){
+  var numerator = k2-m2*Math.pow(w,2) 
+  var denominator = (m1*m2*Math.pow(w,4))+(k1*k2)-(Math.pow(w,2)*(m1*k2+m2*(k1+k2)))
+  return parseFloat(numerator)/parseFloat(denominator)
+}
+function calculateX1OverXstAsFnInWOverW2(k1,k2,m1,m2,w){
+  var w2 = Math.pow(w,2)
+  var wOne2 = k1/m1
+  var wTwo2 = k2/m2
+  var m2OverM1 = m2/m1  
+  var num = 1 - (w2/wTwo2)
+  
+  var term1 = Math.pow(w,4)/(wOne2*wTwo2)
+  var term2 = (1.2*(w2/wOne2))+w2/wTwo2
+  // var term3 = w2/wTwo2
+  var denom = term1-term2+1
 
+  return num/denom
+}
+// function calculateX1OverXstAsFnInWOverW1(k1,k2,m1,m2,w){
+//   var w2 = Math.pow(w,2)
+//   var wOne2 = k1/m1
+//   var wTwo2 = k2/m2
+ 
+//   var num = 1 - w2/wTwo2
+  
+//   var term1 = num
+//   var term2 = 1.2-(w2/wOne2)
+//   var term3 = 0.2
+//   var denom = term1*term2-term3
+//   console.log("w:",w,"num:",num,"---denom:",denom,'===>',num/denom)
+//   return num/denom
+// }
+function calculateChartData(f,k1,k2,m1,m2,w){
+  var points =[]
+  //y from 0 to 16 
+  // x = x1/xst 
+  var ys = []
+  for(let i=0; i<=9;i+=0.1){
+      ys.push(i)
+  }
+  var Xst = f/k1
+  for(let y of ys){
+    var x1OverXst = calculateX1OverXstAsFnInWOverW2(k1,k2,m1,m2,y) 
+    var wOverw1 = y/Math.sqrt(k2/m2)
+    var point = {x:wOverw1 ,y:x1OverXst}
+    points.push(point)
+  }
+  console.log(points)
+  return points
+}
 function App() {
   const classes = useStyles()
     const[m1,setM1] = useState(250)
@@ -41,11 +91,10 @@ function App() {
     const[disableM1AndK1,setDisableM1AndK1]     = useState(true)
     const[baseSpringHeight,setBaseSpringHeight] = useState(0)
     const[topSpringHeight,setTopSpringHeight]   = useState(150)
-
+    const[chartData,setChartData]               = useState([{x:1,y:10/100},{x:2,y:20/100},{x:3,y:30/100},{x:4,y:40/100}])
     function handlePlayClick(){
-      var numerator = k2-m2*Math.pow(w,2) 
-      var denominator = (m1*m2*Math.pow(w,4))+(k1*k2)-(Math.pow(w,2)*(m1*k2+m2*(k1+k2)))
-      var x1 = parseFloat(numerator)/parseFloat(denominator)
+      
+      var x1 = calculateX1(k1,k2,m1,m2,w,f)
       setX1(x1)
       
       var num = k2*f
@@ -53,6 +102,7 @@ function App() {
       var x2 = num/denom
      
       setX2(x2)
+      setChartData(calculateChartData(f,k1,k2,m1,m2,w))
     }
     React.useEffect(()=>{
       
@@ -229,7 +279,7 @@ function App() {
               <Grid container spacing={1}>
                 
                 <Grid item xs={5} style={{height:"auto"}}> 
-                  <SimulatorChart data={[{x:1,y:10/100},{x:2,y:20/100},{x:3,y:30/100},{x:4,y:40/100}]} line={w/parseFloat(Math.sqrt(k1/m1)).toPrecision(3)}/>
+                  <SimulatorChart data={chartData} line={w/parseFloat(Math.sqrt(k1/m1)).toPrecision(3)}/>
                 </Grid>  
                 
                 <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
