@@ -44,7 +44,7 @@ function calculateX1OverXstAsFnInWOverW2(k1,k2,m1,m2,w){
   // var term3 = w2/wTwo2
   var denom = term1-term2+1
 
-  return num/denom
+  return Math.abs(num/denom)
 }
 // function calculateX1OverXstAsFnInWOverW1(k1,k2,m1,m2,w){
 //   var w2 = Math.pow(w,2)
@@ -65,7 +65,7 @@ function calculateChartData(f,k1,k2,m1,m2,w){
   //y from 0 to 16 
   // x = x1/xst 
   var ys = []
-  for(let i=0; i<=9;i+=0.1){
+  for(let i=0; i<=16;i+=0.1){
       ys.push(i)
   }
   var Xst = f/k1
