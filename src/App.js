@@ -17,11 +17,15 @@ import PlayButton from "./simulator_components/PlayButton"
 import Legend from "./simulator_components/Legend"
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Weight3 from "./simulator_components/weight3"
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+  },
+  fields:{
+    marginBottom: theme.spacing(1),
   },
   paper: {
     padding: theme.spacing(2),
@@ -29,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
+const helperStyles = makeStyles(theme => ({
+  root: {
+      position: 'absolute',
+      bottom: '1em',
+  },
+}))
 function calculateX1(k1,k2,m1,m2,w,f){
   var numerator = k2-m2*Math.pow(w,2) 
   var denominator = (m1*m2*Math.pow(w,4))+(k1*k2)-(Math.pow(w,2)*(m1*k2+m2*(k1+k2)))
@@ -128,6 +138,7 @@ function App() {
     const [selected, setSelected] = React.useState(false);
     const[chartDataX1,setChartDataX1]               = useState(calculateChartDataX1(f,k1,k2,m1,m2,w))
     const[chartDataX2,setChartDataX2]               = useState(calculateChartDataX2(f,k1,k2,m1,m2,w))
+    const helperClasses = helperStyles()
     function handlePlayClick(){
       
       var x1 = calculateX1(k1,k2,m1,m2,w,f)
@@ -183,6 +194,7 @@ function App() {
                       label="F"
                       type="number"
                       value={f}
+                      className={classes.fields}
                       style={{width:"100px"}}
                       onChange={(e)=> setF(e.target.value)} 
                       InputProps={{
@@ -196,6 +208,7 @@ function App() {
                     />
                     <Divider orientation="vertical" flexItem />
                     <TextField
+                      className={classes.fields}
                       id="standard-number"
                       label="W"
                       type="number"
@@ -213,6 +226,7 @@ function App() {
                     />
                     <Divider orientation="vertical" flexItem />
                     <TextField
+                      className={classes.fields}
                       id="standard-number"
                       label="K_2"
                       value={k2}
@@ -230,6 +244,7 @@ function App() {
                     />
                     <Divider orientation="vertical" flexItem />
                     <TextField
+                      className={classes.fields}
                       id="standard-number"
                       label="M_2"
                       value={m2}
@@ -248,6 +263,7 @@ function App() {
                     />
                     <Divider orientation="vertical" flexItem />
                     <TextField
+                      className={classes.fields}
                       id="standard-number"
                       label="K_1"
                       value={k1}
@@ -267,6 +283,7 @@ function App() {
                     />
                     <Divider orientation="vertical" flexItem />
                     <TextField
+                      className={classes.fields}
                       id="standard-number"
                       label="M_1"
                       value={m1}
@@ -304,7 +321,7 @@ function App() {
                     </Typography>
                 </AppBar>
                 < FormControlLabel style={{marginTop:"27px"}} 
-                  control={<Checkbox name="checkedC" onChange={(e)=> setDisableM1AndK1(!e.target.checked)} color="black"/>}
+                  control={<Checkbox name="checkedC"  className={classes.fields} onChange={(e)=> setDisableM1AndK1(!e.target.checked)} color="black"/>}
                   label="Edit K_1 & M_1" 
                 />
               </Grid>      

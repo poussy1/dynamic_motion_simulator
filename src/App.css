@@ -35,6 +35,10 @@
 .x_btn{
   font-size: smaller;
 }
+#standard-number-helper-text {
+  position: absolute;
+  top:45px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
