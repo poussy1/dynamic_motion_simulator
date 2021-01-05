@@ -23,7 +23,7 @@ export default function SimulatorChart(props) {
           text: {stroke: 'none', fontWeight: 600}
         }}
       />
-      <YAxis title="X1/Xst" />
+      <YAxis title={props.title} />
       <LineSeries
         // className="first-series"
         color="grey"

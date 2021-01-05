@@ -5,9 +5,11 @@ import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import './App.css';
 import Divider from '@material-ui/core/Divider';
 import Checkbox from '@material-ui/core/Checkbox';
+import ToggleButton from '@material-ui/lab/ToggleButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Card from '@material-ui/core/Card';
 import SimulatorChart from "./simulator_components/SimulatorChart"
@@ -46,6 +48,20 @@ function calculateX1OverXstAsFnInWOverW2(k1,k2,m1,m2,w){
 
   return Math.abs(num/denom)
 }
+function calculateX2OverXstAsFnInWOverW2(k1,k2,m1,m2,w){
+  var w2 = Math.pow(w,2)
+  var wOne2 = k1/m1
+  var wTwo2 = k2/m2
+  var m2OverM1 = m2/m1  
+  var num = 1 
+  
+  var term1 = Math.pow(w,4)/(wOne2*wTwo2)
+  var term2 = (1.2*(w2/wOne2))+w2/wTwo2
+  // var term3 = w2/wTwo2
+  var denom = term1-term2+1
+
+  return Math.abs(num/denom)
+}
 // function calculateX1OverXstAsFnInWOverW1(k1,k2,m1,m2,w){
 //   var w2 = Math.pow(w,2)
 //   var wOne2 = k1/m1
@@ -60,7 +76,7 @@ function calculateX1OverXstAsFnInWOverW2(k1,k2,m1,m2,w){
 //   console.log("w:",w,"num:",num,"---denom:",denom,'===>',num/denom)
 //   return num/denom
 // }
-function calculateChartData(f,k1,k2,m1,m2,w){
+function calculateChartDataX1(f,k1,k2,m1,m2,w){
   var points =[]
   //y from 0 to 16 
   // x = x1/xst 
@@ -71,6 +87,24 @@ function calculateChartData(f,k1,k2,m1,m2,w){
   var Xst = f/k1
   for(let y of ys){
     var x1OverXst = calculateX1OverXstAsFnInWOverW2(k1,k2,m1,m2,y) 
+    var wOverw2 = y/Math.sqrt(k2/m2)
+    var point = {x:wOverw2 ,y:x1OverXst}
+    points.push(point)
+  }
+  console.log(points)
+  return points
+}
+function calculateChartDataX2(f,k1,k2,m1,m2,w){
+  var points =[]
+  //y from 0 to 16 
+  // x = x1/xst 
+  var ys = []
+  for(let i=0; i<=16;i+=0.1){
+      ys.push(i)
+  }
+  var Xst = f/k1
+  for(let y of ys){
+    var x1OverXst = calculateX2OverXstAsFnInWOverW2(k1,k2,m1,m2,y) 
     var wOverw2 = y/Math.sqrt(k2/m2)
     var point = {x:wOverw2 ,y:x1OverXst}
     points.push(point)
@@ -91,7 +125,9 @@ function App() {
     const[disableM1AndK1,setDisableM1AndK1]     = useState(true)
     const[baseSpringHeight,setBaseSpringHeight] = useState(0)
     const[topSpringHeight,setTopSpringHeight]   = useState(150)
-    const[chartData,setChartData]               = useState([{x:1,y:10/100},{x:2,y:20/100},{x:3,y:30/100},{x:4,y:40/100}])
+    const [selected, setSelected] = React.useState(false);
+    const[chartDataX1,setChartDataX1]               = useState(calculateChartDataX1(f,k1,k2,m1,m2,w))
+    const[chartDataX2,setChartDataX2]               = useState(calculateChartDataX2(f,k1,k2,m1,m2,w))
     function handlePlayClick(){
       
       var x1 = calculateX1(k1,k2,m1,m2,w,f)
@@ -102,7 +138,8 @@ function App() {
       var x2 = num/denom
      
       setX2(x2)
-      setChartData(calculateChartData(f,k1,k2,m1,m2,w))
+      setChartDataX1(calculateChartDataX1(f,k1,k2,m1,m2,w))
+      setChartDataX2(calculateChartDataX2(f,k1,k2,m1,m2,w))
     }
     React.useEffect(()=>{
       
@@ -278,8 +315,34 @@ function App() {
             <Paper className={classes.paper}>
               <Grid container spacing={1}>
                 
-                <Grid item xs={5} style={{height:"auto"}}> 
-                  <SimulatorChart data={chartData} line={w/parseFloat(Math.sqrt(k1/m1)).toPrecision(3)}/>
+                <Grid item xs={4} style={{height:"auto"}}> 
+                    <SimulatorChart data={selected?chartDataX1:chartDataX2} title={selected?"X1/Xst":"X2/Xst"} line={w/parseFloat(Math.sqrt(k1/m1)).toPrecision(3)}/> 
+                </Grid>  
+                <Grid item xs={1} className="btn_col">
+                  <ToggleButton
+                      value="check"
+                      size="small"
+                      style={{fontSize:"10px"}}
+                      selected={selected}
+                      onChange={() => {
+                        setSelected(!selected);
+                      }}
+                    >
+                     
+                      X1/Xst
+                    </ToggleButton>
+                    <ToggleButton
+                      value="check"
+                      style={{fontSize:"10px"}}
+                      size="small"
+                      selected={!selected}
+                      onChange={() => {
+                        setSelected(!selected);
+                      }}
+                    >
+                     
+                      X2/Xst
+                    </ToggleButton>
                 </Grid>  
                 
                 <Divider orientation="vertical" flexItem style={{height:"inherit",margin:"0px 0px 0px 80px"}}/>
